@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package auth;
+
+service AuthService {
+    rpc Register (RegisterRequest) returns (RegisterResponde) {}
+    rpc Login (LoginRequest) returns (LoginResponde) {}
+    rpc Validate (ValidateRequest) returns (ValidateResponde) {}
+}
+
+
+message RegisterRequest {
+    string email = 1;
+    string password = 2;
+}
+
+message RegisterResponde {
+    int32 status = 1;
+    repeated string error = 2;
+}
+
+message LoginRequest {
+    string email = 1;
+    string password = 2;
+}
+
+message LoginResponde {
+    int32 status = 1;
+    repeated string error = 2;
+    string token = 3;
+}
+
+message ValidateRequest {
+    string token = 1;
+}
+
+message ValidateResponde {
+    int32 status = 1;
+    repeated string error = 2;
+    int32 userId = 3;
+}
